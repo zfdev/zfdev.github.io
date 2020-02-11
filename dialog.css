@@ -37,3 +37,8 @@
     height: 30px;
     border-radius: 0;
 }
+
+.dialog-container .content .message {
+    color: red;
+    font-size: 12px;
+}
