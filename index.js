@@ -5,31 +5,38 @@ const body = qs('body');
 const footer = qs('footer');
 const content = qs('.main-content');
 
-const hide = function() {
-    document.documentElement.style.overflowY = 'hidden';
-    body.style.overflowY = 'hidden';
-    content.style.filter = 'blur(6px)';
-    footer.hidden = true;
-    body.style.height = '100%';
+
+class Page {
+    hide() {
+        document.documentElement.style.overflowY = 'hidden';
+        body.style.overflowY = 'hidden';
+        content.style.filter = 'blur(6px)';
+        footer.hidden = true;
+        body.style.height = '100%';
+    }
+    show() {
+        document.documentElement.style.overflowY = 'auto';
+        body.style.overflowY = 'auto';
+        content.style.filter = 'blur(0px)';
+        footer.hidden = false;
+        body.style.height = 'auto';
+    }
+
 }
 
-const show = function() {
-    document.documentElement.style.overflowY = 'auto';
-    body.style.overflowY = 'auto';
-    content.style.filter = 'blur(0px)';
-    footer.hidden = false;
-    body.style.height = 'auto';
-}
+const page = new Page();
 
-hide();
+page.hide();
 
 class Dialog {
     constructor(config = {}) {
         this.config = config;
+        this.check = this.check.bind(this);
         this.init();
     }
     init() {
         this.render();
+        this.bindEvent();
     }
     template() {
         return `
@@ -43,18 +50,30 @@ class Dialog {
             </div>
         `;
     }
+    check() {
+        if (this.input.value === 'jason') {
+            this.hide();
+        }
+    }
     render() {
         body.insertAdjacentHTML('beforeend', this.template());
         this.container = qs('.dialog-container');
         this.content = qs('.dialog-container .content');
+        this.button = qs('.dialog-container .content button');
+        this.input = qs('.dialog-container .content input');
+
         this.content.style.width = this.config.width + 'px';
         // this.content.style.height = this.config.height + 'px';
+    }
+    bindEvent() {
+        this.button.addEventListener('click', this.check);
     }
     show() {
 
     }
     hide() {
-
+        this.container.hidden = true;
+        page.show();
     }
 }
 

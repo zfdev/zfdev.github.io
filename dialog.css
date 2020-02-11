@@ -30,8 +30,10 @@
     height: 24px;
     line-height: 24px;
     text-indent: 5px;
+    border-radius: 0;
 }
 
 .dialog-container .content button {
     height: 30px;
+    border-radius: 0;
 }
