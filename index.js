@@ -101,4 +101,6 @@ if (!checkPassRecord()) {
         width: 240,
         height: 80,
     });
+} else {
+    page.show();
 }

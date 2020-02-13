@@ -10,6 +10,15 @@
     <link href="dialog.css" rel="stylesheet" type="text/css"></link>
 
     <style>
+        body {
+            overflow-y: hidden;
+            height: 100%;
+        }
+        
+        .main-content {
+            filter: blur(6px);
+        }
+        
         div.oembedall-githubrepos {
             border: 1px solid #DDD;
             border-radius: 4px;
@@ -2239,7 +2248,7 @@
         </ul>
     </div>
 
-    <footer style="position:fixed; font-size:.8em; text-align:right; bottom:0px; margin-left:-25px; height:20px; width:100%;"><a href="#top">返回索引</a></footer>
+    <footer style="position:fixed; font-size:.8em; text-align:right; bottom:0px; margin-left:-25px; height:20px; width:100%;" hidden><a href="#top">返回索引</a></footer>
 
     <script src="index.js"></script>
 </body>
